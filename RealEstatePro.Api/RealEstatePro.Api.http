@@ -1,6 +1,1 @@
 @RealEstatePro.Api_HostAddress = http://localhost:5269
-
-GET {{RealEstatePro.Api_HostAddress}}/weatherforecast/
-Accept: application/json
-
-###
