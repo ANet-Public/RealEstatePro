@@ -68,7 +68,8 @@ namespace RealEstatePro.Infrastructure.Versioning
                 ApplicationVersionFull: appVersionFull,
                 ApplicationVersionPublic: applicationVersionPublic,
                 WebApiVersion: webApiVersion,
-                TelegramApiVersion: telegramApiVersion);
+                TelegramApiVersion: telegramApiVersion
+            );
         }
 
         private static string GetRequired(IDictionary<string, string> values, string key)
