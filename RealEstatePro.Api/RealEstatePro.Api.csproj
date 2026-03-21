@@ -17,4 +17,8 @@
     <ProjectReference Include="..\RealEstatePro.Infrastructure\RealEstatePro.Infrastructure.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+	  <None Include="..\version.txt" Link="version.txt" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+
 </Project>

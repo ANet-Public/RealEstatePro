@@ -4,6 +4,7 @@
   <Project Path="RealEstatePro.Contracts/RealEstatePro.Contracts.csproj" />
   <Project Path="RealEstatePro.Domain/RealEstatePro.Domain.csproj" />
   <Project Path="RealEstatePro.Infrastructure/RealEstatePro.Infrastructure.csproj" />
+  <Project Path="RealEstatePro.Scripts/RealEstatePro.Scripts.csproj" Id="300bb703-8c9a-45f0-8ce1-2e3d6c7f4b2e" />
   <Project Path="RealEstatePro.Tests.Integration/RealEstatePro.Tests.Integration.csproj" />
   <Project Path="RealEstatePro.Tests.Unit/RealEstatePro.Tests.Unit.csproj" />
 </Solution>
