@@ -9,17 +9,17 @@ try {
     $repoRoot = (git rev-parse --show-toplevel).Trim()
 }
 catch {
-    throw "Не удалось определить корень git-репозитория."
+    throw "Failed to resolve git repository root."
 }
 
 if ([string]::IsNullOrWhiteSpace($repoRoot)) {
-    throw "Git вернул пустой путь к корню репозитория."
+    throw "Git returned an empty repository root path."
 }
 
 $versionFile = Join-Path $repoRoot "version.txt"
 
 if (-not (Test-Path $versionFile)) {
-    throw "Файл version.txt не найден: $versionFile"
+    throw "version.txt was not found: $versionFile"
 }
 
 function Read-VersionFile {
@@ -40,7 +40,7 @@ function Read-VersionFile {
 
         $parts = $trimmed.Split("=", 2)
         if ($parts.Length -ne 2) {
-            throw "Некорректная строка в version.txt: $trimmed"
+            throw "Invalid line in version.txt: $trimmed"
         }
 
         $key = $parts[0].Trim()
@@ -71,7 +71,7 @@ $data = Read-VersionFile -Path $versionFile
 
 foreach ($requiredKey in @('AppVersion', 'WebApiVersion', 'TelegramApiVersion')) {
     if (-not $data.Contains($requiredKey)) {
-        throw "В version.txt отсутствует ключ: $requiredKey"
+        throw "Missing required key in version.txt: $requiredKey"
     }
 }
 
@@ -79,7 +79,7 @@ $appVersion = $data['AppVersion']
 $parts = $appVersion.Split('.')
 
 if ($parts.Length -ne 4) {
-    throw "AppVersion должен быть в формате YY.Global.Internal.CommitCount. Текущее значение: $appVersion"
+    throw "AppVersion must be in format YY.Global.Internal.CommitCount. Current value: $appVersion"
 }
 
 $yearPart = [int]$parts[0]
@@ -102,4 +102,5 @@ Write-VersionFile -Path $versionFile -Data $data
 
 git add -- $versionFile
 
-Write-Host "version.txt обновлён: $($data['AppVersion'])" -ForegroundColor Green
+Write-Host "version.txt updated: $($data['AppVersion'])" -ForegroundColor Green
+exit 0
