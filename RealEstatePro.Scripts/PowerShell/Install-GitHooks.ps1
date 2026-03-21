@@ -29,18 +29,18 @@ if (-not (Test-Path $preCommitScriptPath)) {
     throw "Pre-commit script not found: $preCommitScriptPath"
 }
 
-$preCommitContent = @"
-#!/bin/sh
-powershell -NoProfile -ExecutionPolicy Bypass -File "$preCommitScriptPath"
-RESULT=$?
-if [ \$RESULT -ne 0 ]; then
-  echo "pre-commit version hook failed"
-  exit \$RESULT
-fi
-exit 0
-"@
+$hookLines = @(
+    '#!/bin/sh'
+    "powershell -NoProfile -ExecutionPolicy Bypass -File `"$preCommitScriptPath`""
+    'RESULT=$?'
+    'if [ $RESULT -ne 0 ]; then'
+    '  echo "pre-commit version hook failed"'
+    '  exit $RESULT'
+    'fi'
+    'exit 0'
+)
 
-Set-Content -Path $preCommitPath -Value $preCommitContent -Encoding ASCII
+Set-Content -Path $preCommitPath -Value $hookLines -Encoding ASCII
 
 Write-Host "Git pre-commit hook installed successfully:" -ForegroundColor Green
 Write-Host "  $preCommitPath"

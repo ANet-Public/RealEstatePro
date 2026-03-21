@@ -100,6 +100,6 @@ $data['AppVersion'] = "$yearPart.$globalChanges.$internalReleases.$commitCount"
 
 Write-VersionFile -Path $versionFile -Data $data
 
-git add $versionFile
+git add -- $versionFile
 
 Write-Host "version.txt обновлён: $($data['AppVersion'])" -ForegroundColor Green
